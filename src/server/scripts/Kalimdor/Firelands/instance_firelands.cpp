@@ -43,7 +43,7 @@ class instance_firelands : public InstanceMapScript
 
 			void Initialize()
 			{
-				SetBossNumber(MAX_ENCOUNTERS);
+				SetBossNumber(EncounterCount);
 				LoadDoorData(doorData);
 				_ragnarosGUID = 0;
 				_cacheOfTheFirelordGUID = 0;
