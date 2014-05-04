@@ -3124,6 +3124,7 @@ void SpellMgr::LoadSpellInfoCorrections()
             case 54171: // Divine Storm
             case 54172: // Divine Storm (heal)
             case 66588: // Flaming Spear
+			case 34151: // Efflorescence
                 spellInfo->MaxAffectedTargets = 3;
                 break;
             case 38310: // Multi-Shot
@@ -3137,6 +3138,7 @@ void SpellMgr::LoadSpellInfoCorrections()
             case 45641: // Fire Bloom
             case 55665: // Life Drain - Sapphiron (H)
             case 28796: // Poison Bolt Volly - Faerlina
+			case 740:	// Tranquility
                 spellInfo->MaxAffectedTargets = 5;
                 break;
             case 40827: // Sinful Beam
