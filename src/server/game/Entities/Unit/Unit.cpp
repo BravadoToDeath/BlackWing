@@ -7014,6 +7014,25 @@ bool Unit::HandleProcTriggerSpell(Unit* victim, uint32 damage, AuraEffect* trigg
                 return false;
             break;
         }
+		case 92236: // Item - BlackWing Symbiotic Normal Tank Trinket
+		case 92356: // Item - BlackWing Symbiotic Heroic Tank Trinket
+		case 96947: // Item - Firelands Spidersilk Tank Trinket
+		case 97130: // Item - Firelands Spidersilk Tank Trinket
+		{
+			// Procs only if damage takes health below 35%
+			if (!HealthBelowPctDamaged(35, damage) || HealthBelowPct(35))
+				return false;
+			break;
+		}
+		case 108007: // Item - Dragon Soul Normal Tank Trinket
+		case 109785: // Item - Dragon Soul LFR Tank Trinket
+		case 109786: // Item - Dragon Soul  Tank Trinket
+		{
+			// Procs only if damage takes health below 50%
+			if (!HealthBelowPctDamaged(50, damage) || HealthBelowPct(50))
+				return false;
+			break;
+		}
         default:
             break;
     }
