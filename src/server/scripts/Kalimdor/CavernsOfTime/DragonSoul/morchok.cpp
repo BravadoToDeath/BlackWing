@@ -459,9 +459,23 @@ class spell_morchok_bboe : public SpellScriptLoader
         }
 };
 
+class achievement_dont_stand_so_close_to_me : public AchievementCriteriaScript
+{
+    public:
+        achievement_dont_stand_so_close_to_me() : AchievementCriteriaScript("achievement_dont_stand_so_close_to_me") { }
+
+        bool OnCheck(Player* source, Unit* /*target*/) OVERRIDE
+        {
+
+        }
+};
+
 void AddSC_boss_morchok()
 {
 	new boss_morchok();
 	new npc_kohcrom();
+
+	new achievement_dont_stand_so_close_to_me();
+
 	new spell_morchok_bboe();
 }
