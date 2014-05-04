@@ -3114,6 +3114,7 @@ void SpellMgr::LoadSpellInfoCorrections()
             case 28542: // Life Drain - Sapphiron
             case 29213: // Curse of the Plaguebringer - Noth
             case 29576: // Multi-Shot
+            case 34151: // Efflorescence
             case 37790: // Spread Shot
             case 39992: // Needle Spine
             case 40816: // Saber Lash
@@ -3124,13 +3125,13 @@ void SpellMgr::LoadSpellInfoCorrections()
             case 54171: // Divine Storm
             case 54172: // Divine Storm (heal)
             case 66588: // Flaming Spear
-			case 34151: // Efflorescence
                 spellInfo->MaxAffectedTargets = 3;
                 break;
             case 38310: // Multi-Shot
             case 53385: // Divine Storm (Damage)
                 spellInfo->MaxAffectedTargets = 4;
                 break;
+            case 740:   // Tranquility
             case 42005: // Bloodboil
             case 38296: // Spitfire Totem
             case 37676: // Insidious Whisper
@@ -3138,7 +3139,6 @@ void SpellMgr::LoadSpellInfoCorrections()
             case 45641: // Fire Bloom
             case 55665: // Life Drain - Sapphiron (H)
             case 28796: // Poison Bolt Volly - Faerlina
-			case 740:	// Tranquility
                 spellInfo->MaxAffectedTargets = 5;
                 break;
             case 40827: // Sinful Beam
