@@ -52,13 +52,13 @@ struct GameObjectTemplate
         //0 GAMEOBJECT_TYPE_DOOR
         struct
         {
-            uint32 startOpen; //0 used client side to determine GO_ACTIVATED means open/closed
-            uint32 lockId; //1 -> Lock.dbc
-            uint32 autoCloseTime; //2 secs till autoclose = autoCloseTime / 0x10000
-            uint32 noDamageImmune; //3 break opening whenever you recieve damage?
-            uint32 openTextID; //4 can be used to replace castBarCaption?
-            uint32 closeTextID; //5
-            uint32 ignoredByPathing; //6
+            uint32 startOpen;							//0 used client side to determine GO_ACTIVATED means open/closed
+            uint32 lockId;								//1 -> Lock.dbc
+            uint32 autoCloseTime;						//2 secs till autoclose = autoCloseTime / 0x10000
+            uint32 noDamageImmune;						//3 break opening whenever you recieve damage?
+            uint32 openTextID;							//4 can be used to replace castBarCaption?
+            uint32 closeTextID;							//5
+            uint32 ignoredByPathing;					//6
         } door;
         //1 GAMEOBJECT_TYPE_BUTTON
         struct
