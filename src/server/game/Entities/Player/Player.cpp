@@ -123,9 +123,9 @@ enum CharacterFlags
 enum CharacterCustomizeFlags
 {
     CHAR_CUSTOMIZE_FLAG_NONE            = 0x00000000,
-    CHAR_CUSTOMIZE_FLAG_CUSTOMIZE       = 0x00000001,       // name, gender, etc...
-    CHAR_CUSTOMIZE_FLAG_FACTION         = 0x00010000,       // name, gender, faction, etc...
-    CHAR_CUSTOMIZE_FLAG_RACE            = 0x00100000        // name, gender, race, etc...
+    CHAR_CUSTOMIZE_FLAG_CUSTOMIZE       = 0x00000001,       // Name, gender, etc...
+    CHAR_CUSTOMIZE_FLAG_FACTION         = 0x00010000,       // Name, gender, faction, etc...
+    CHAR_CUSTOMIZE_FLAG_RACE            = 0x00100000        // Name, gender, race, etc...
 };
 
 // corpse reclaim times
@@ -159,7 +159,7 @@ PlayerTaxi::PlayerTaxi()
 
 void PlayerTaxi::InitTaxiNodesForLevel(uint32 race, uint32 chrClass, uint8 level)
 {
-    // class specific initial known nodes
+    // Class specific initial known nodes
     switch (chrClass)
     {
         case CLASS_DEATH_KNIGHT:
@@ -170,7 +170,7 @@ void PlayerTaxi::InitTaxiNodesForLevel(uint32 race, uint32 chrClass, uint8 level
         }
     }
 
-    // race specific initial known nodes: capital and taxi hub masks
+    // Race specific initial known nodes: capital and taxi hub masks
     switch (race)
     {
         case RACE_HUMAN:    SetTaximaskNode(2);  break;     // Human
@@ -186,15 +186,15 @@ void PlayerTaxi::InitTaxiNodesForLevel(uint32 race, uint32 chrClass, uint8 level
         case RACE_DRAENEI:  SetTaximaskNode(94); break;     // Draenei
     }
 
-    // new continent starting masks (It will be accessible only at new map)
+    // New continent starting masks (It will be accessible only at new map)
     switch (Player::TeamForRace(race))
     {
         case ALLIANCE: SetTaximaskNode(100); break;
         case HORDE:    SetTaximaskNode(99);  break;
     }
-    // level dependent taxi hubs
+    // Level dependent taxi hubs
     if (level >= 68)
-        SetTaximaskNode(213);                               //Shattered Sun Staging Area
+        SetTaximaskNode(213);                               // Shattered Sun Staging Area
 }
 
 void PlayerTaxi::LoadTaxiMask(std::string const &data)
@@ -204,7 +204,7 @@ void PlayerTaxi::LoadTaxiMask(std::string const &data)
     uint8 index = 0;
     for (Tokenizer::const_iterator iter = tokens.begin(); index < TaxiMaskSize && iter != tokens.end(); ++iter, ++index)
     {
-        // load and set bits only for existing taxi nodes
+        // Load and set bits only for existing taxi nodes
         m_taximask[index] = sTaxiNodesMask[index] & uint32(atol(*iter));
     }
 }
@@ -215,12 +215,12 @@ void PlayerTaxi::AppendTaximaskTo(ByteBuffer& data, bool all)
     if (all)
     {
         for (uint8 i = 0; i < TaxiMaskSize; ++i)
-            data << uint8(sTaxiNodesMask[i]);              // all existed nodes
+            data << uint8(sTaxiNodesMask[i]);              // All existed nodes
     }
     else
     {
         for (uint8 i = 0; i < TaxiMaskSize; ++i)
-            data << uint8(m_taximask[i]);                  // known nodes
+            data << uint8(m_taximask[i]);                  // Known nodes
     }
 }
 
@@ -252,7 +252,7 @@ bool PlayerTaxi::LoadTaxiDestinationsFromString(const std::string& values, uint3
             return false;
     }
 
-    // can't load taxi path without mount set (quest taxi path?)
+    // Can't load taxi path without mount set (quest taxi path?)
     if (!sObjectMgr->GetTaxiMountDisplayId(GetTaxiSource(), team, true))
         return false;
 
@@ -341,11 +341,11 @@ void TradeData::SetItem(TradeSlots slot, Item* item)
 
     Update();
 
-    // need remove possible trader spell applied to changed item
+    // Need to remove possible trader spell applied to changed item
     if (slot == TRADE_SLOT_NONTRADED)
         GetTraderData()->SetSpell(0);
 
-    // need remove possible player spell applied (possible move reagent)
+    // Need to remove possible player spell applied (possible move reagent)
     SetSpell(0);
 }
 
@@ -362,8 +362,8 @@ void TradeData::SetSpell(uint32 spell_id, Item* castItem /*= NULL*/)
     SetAccepted(false);
     GetTraderData()->SetAccepted(false);
 
-    Update(true);                                           // send spell info to item owner
-    Update(false);                                          // send spell info to caster self
+    Update(true);                                           // Send spell info to item owner
+    Update(false);                                          // Send spell info to caster self
 }
 
 void TradeData::SetMoney(uint64 money)
@@ -371,6 +371,11 @@ void TradeData::SetMoney(uint64 money)
     if (m_money == money)
         return;
 
+    if (!m_player->HasEnoughMoney(money))                   // Prevent Scammers
+    {
+        m_player->GetSession()->SendTradeStatus(TRADE_STATUS_BUSY);
+        return;
+    }
     m_money = money;
 
     SetAccepted(false);
@@ -382,9 +387,9 @@ void TradeData::SetMoney(uint64 money)
 void TradeData::Update(bool forTarget /*= true*/)
 {
     if (forTarget)
-        m_trader->GetSession()->SendUpdateTrade(true);      // player state for trader
+        m_trader->GetSession()->SendUpdateTrade(true);      // Player state for trader
     else
-        m_player->GetSession()->SendUpdateTrade(false);     // player state for player
+        m_player->GetSession()->SendUpdateTrade(false);     // Player state for player
 }
 
 void TradeData::SetAccepted(bool state, bool crosssend /*= false*/)
