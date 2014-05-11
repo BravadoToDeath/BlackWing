@@ -573,6 +573,8 @@ GetMap()->GameObjectRelocation(this, pos.x, pos.y, pos.z, GetOrientation());
 
                         if (goInfo->trap.type == 1)
                             SetLootState(GO_JUST_DEACTIVATED);
+                        else if (!goInfo->trap.type)
+                            SetLootState(GO_READY);
 
                         // Battleground gameobjects have data2 == 0 && data5 == 3
                         if (!goInfo->trap.diameter && goInfo->trap.cooldown == 3)
