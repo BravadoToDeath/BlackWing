@@ -3208,6 +3208,12 @@ void SpellMgr::LoadSpellInfoCorrections()
             case 48421: // Master Shapeshifter
                 spellInfo->Stances = 1 << (FORM_MOONKIN - 1);
                 break;
+            case 5420: // Tree of Life (Passive)
+                spellInfo->Stances = 1 << (FORM_TREE - 1);
+                break;
+            case 49376: // Feral Charge (Cat Form)
+                spellInfo->AttributesEx3 &= ~SPELL_ATTR3_CANT_TRIGGER_PROC;
+                break;
             case 51466: // Elemental Oath (Rank 1)
             case 51470: // Elemental Oath (Rank 2)
                 spellInfo->Effects[EFFECT_1].Effect = SPELL_EFFECT_APPLY_AURA;
@@ -3664,8 +3670,9 @@ void SpellMgr::LoadSpellInfoCorrections()
                 spellInfo->ManaCost = 0;
                 spellInfo->ManaPerSecond = 0;
                 break;
-            // Halls Of Origination spells
-            // Temple Guardian Anhuur
+            //
+            // HALLS OF ORIGINATION SPELLS
+            //
             case 76606: // Disable Beacon Beams L
             case 76608: // Disable Beacon Beams R
                 // Little hack, Increase the radius so it can hit the Cave In Stalkers in the platform.
@@ -3675,14 +3682,11 @@ void SpellMgr::LoadSpellInfoCorrections()
                 // Aura is refreshed at 3 seconds, and the tick should happen at the fourth.
                 spellInfo->AttributesEx8 |= SPELL_ATTR8_DONT_RESET_PERIODIC_TIMER;
                 break;
+            //
+            // ENDOF HALLS OF ORIGINATION SPELLS
+            //
             case 24314: // Threatening Gaze
                 spellInfo->AuraInterruptFlags |= AURA_INTERRUPT_FLAG_CAST | AURA_INTERRUPT_FLAG_MOVE | AURA_INTERRUPT_FLAG_JUMP;
-                break;
-            case 5420: // Tree of Life (Passive)
-                spellInfo->Stances = 1 << (FORM_TREE - 1);
-                break;
-            case 49376: // Feral Charge (Cat Form)
-                spellInfo->AttributesEx3 &= ~SPELL_ATTR3_CANT_TRIGGER_PROC;
                 break;
             case 45257: // Using Steam Tonk Controller
             case 45440: // Steam Tonk Controller
@@ -3690,10 +3694,37 @@ void SpellMgr::LoadSpellInfoCorrections()
                 // Crashes client on pressing ESC
                 spellInfo->AttributesEx4 &= ~SPELL_ATTR4_TRIGGERED;
                 break;
+            //
+            // BARADIN HOLD SPELLS
+            //
             case 96942:  // Gaze of Occu'thar
             case 101009: // Gaze of Occu'thar
                 spellInfo->AttributesEx &= ~SPELL_ATTR1_CHANNELED_1;
                 break;
+            // ENDOF BARADIN HOLD SPELLS
+            //
+            // DRAGON SOUL SPELLS
+            //
+            case 109075: // Fading Light
+            case 110137: // ShockWave
+                spellInfo->Effects[EFFECT_0].RadiusEntry = sSpellRadiusStore.LookupEntry(EFFECT_RADIUS_200_YARDS);
+                break;
+            case 106388: // Twilight Eruption
+            case 106369: // Twilight Shift
+            case 109048: // Destroy All Life
+                spellInfo->Effects[EFFECT_0].RadiusEntry = sSpellRadiusStore.LookUpEntry(EFFECT_RADIUS_50000_YARDS);
+                break;
+            case 106415: // Twilight Burst
+                spellInfo->Effects[EFFECT_0].RadiusEntry = sSpellRadiusStore.LookUpEntry(EFFECT_RADIUS_50000_YARDS);
+                spellInfo->Effects[EFFECT_1].RadiusEntry = sSpellRadiusStore.LookUpEntry(EFFECT_RADIUS_50000_YARDS);
+                break;
+            case 103327: // Hour of Twilight
+            case 106523: // Cataclysm
+                spellInfo->Effects[EFFECT_0].RadiusEntry = sSpellRadiusStore.LookUpEntry(EFFECT_RADIUS_50000_YARDS);
+                spellInfo->Effects[EFFECT_1].RadiusEntry = sSpellRadiusStore.LookUpEntry(EFFECT_RADIUS_50000_YARDS);
+                spellInfo->Effects[EFFECT_2].RadiusEntry = sSpellRadiusStore.LookUpEntry(EFFECT_RADIUS_50000_YARDS);
+                break;
+            // ENDOF DRAGON SOUL SPELLS
             // ISLE OF CONQUEST SPELLS
             //
             case 66551: // Teleport
