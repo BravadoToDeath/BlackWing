@@ -527,7 +527,7 @@ GetMap()->GameObjectRelocation(this, pos.x, pos.y, pos.z, GetOrientation());
             {
                 case GAMEOBJECT_TYPE_DOOR:
                 case GAMEOBJECT_TYPE_BUTTON:
-                    if (GetGOInfo()->GetAutoCloseTime() && (m_cooldownTime < time(NULL)))
+                    if (m_cooldownTime && (m_cooldownTime < time(NULL)))
                         ResetDoorOrButton();
                     break;
                 case GAMEOBJECT_TYPE_GOOBER:

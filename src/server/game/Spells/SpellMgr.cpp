@@ -3387,6 +3387,17 @@ void SpellMgr::LoadSpellInfoCorrections()
                 break;
             // ENDOF TRIAL OF THE CRUSADER SPELLS
             //
+            // HALLS OF REFLECTION SPELLS
+            //
+            case 72435: // Defiling Horror
+            case 72452: // Defiling Horror
+                spellInfo->Effects[EFFECT_0].RadiusEntry = sSpellRadiusStore.LookupEntry(EFFECT_RADIUS_60_YARDS);
+                spellInfo->Effects[EFFECT_1].RadiusEntry = sSpellRadiusStore.LookupEntry(EFFECT_RADIUS_60_YARDS);
+                break;
+            case 72900: // Start Halls of Reflection Quest AE
+                spellInfo->Effects[EFFECT_0].RadiusEntry = sSpellRadiusStore.LookupEntry(EFFECT_RADIUS_200_YARDS);
+                break;
+            // ENDOF HALLS OF REFLECTION SPELLS
             // ICECROWN CITADEL SPELLS
             //
             // THESE SPELLS ARE WORKING CORRECTLY EVEN WITHOUT THIS HACK
