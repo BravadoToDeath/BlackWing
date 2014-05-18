@@ -437,7 +437,8 @@ enum EffectRadiusIndex
     EFFECT_RADIUS_47_YARDS      = 62,
     EFFECT_RADIUS_23_YARDS      = 63,
     EFFECT_RADIUS_3_5_YARDS     = 64,   // 3.5 yards
-    EFFECT_RADIUS_80_YARDS_2    = 65
+    EFFECT_RADIUS_80_YARDS_2    = 65,
+    EFFECT_RADIUS_300_YARDS     = 66
 };
 
 // Spell pet auras

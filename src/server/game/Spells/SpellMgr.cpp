@@ -3705,9 +3705,41 @@ void SpellMgr::LoadSpellInfoCorrections()
             //
             // DRAGON SOUL SPELLS
             //
+            case 109396: // Ooze Spit
+                spellInfo->Effects[EFFECT_0].RadiusEntry = sSpellRadiusStore.LookupEntry(EFFECT_RADIUS_4_YARDS);
+                break;
+            case 109199: // Wild Flail
+                spellInfo->Effects[EFFECT_0].RadiusEntry =sSpellRadiusStore.LookUpEntry(EFFECT_RADIUS_10_YARDS);
+                spellInfo->Effects[EFFECT_1].RadiusEntry =sSpellRadiusStore.LookUpEntry(EFFECT_RADIUS_10_YARDS);
+                break;
+            case 103527: // Void Diffusion
+                spellInfo->Effects[EFFECT_0].RadiusEntry = sSpellRadiusStore.LookUpEntry(EFFECT_RADIUS_20_YARDS);
+                break;
+            case 103414: // Stomp
+                spellInfo->Effects[EFFECT_0].RadiusEntry = sSpellRadiusStore.LookupEntry(EFFECT_RADIUS_25_YARDS);
+                spellInfo->Effects[EFFECT_2].RadiusEntry = sSpellRadiusStore.LookupEntry(EFFECT_RADIUS_25_YARDS);
+                break;
+            case 105539: // Mana Diffusion Normal / Heroic
+                spellInfo->Effects[EFFECT_0].RadiusEntry = sSpellRadiusStore.LookupEntry(EFFECT_RADIUS_30_YARDS);
+                break;
+            case 104322: // Psychic Drain
+            case 110742: // Mana Diffusion LFR
+                spellInfo->Effects[EFFECT_0].RadiusEntry = sSpellRadiusStore.LookupEntry(EFFECT_RADIUS_100_YARDS);
+                break;
+            case 103528: // Target Selection
+            case 103635: // Fusing Vapors
             case 109075: // Fading Light
             case 110137: // ShockWave
                 spellInfo->Effects[EFFECT_0].RadiusEntry = sSpellRadiusStore.LookupEntry(EFFECT_RADIUS_200_YARDS);
+                break;
+            case 103434: // Disrupting Shadows
+            case 109879: // Zon'ozz whisper: Shadows
+            case 104377: // Black Blood of Go'rath
+                spellInfo->Effects[EFFECT_0].RadiusEntry = sSpellRadiusStore.LookupEntry(EFFECT_RADIUS_300_YARDS);
+                break;
+            case 103785: // Black Blood of the Earth
+                spellInfo->Effects[Effect_0].RadiusEntry = sSpellRadiusStore.LookUpEntry(EFFECT_RADIUS_300_YARDS);
+                spellInfo->Effects[Effect_1].RadiusEntry = sSpellRadiusStore.LookUpEntry(EFFECT_RADIUS_300_YARDS);
                 break;
             case 106388: // Twilight Eruption
             case 106369: // Twilight Shift
